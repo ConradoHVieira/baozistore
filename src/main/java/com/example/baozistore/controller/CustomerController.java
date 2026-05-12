@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.baozistore.model.Custumer;
-import com.example.baozistore.repository.CustumerRepository;
+import com.example.baozistore.model.Customer;
+import com.example.baozistore.repository.CustomerRepository;
 
 import java.util.List;
 
 
 
 @RestController
-@RequestMapping({"/custumer"})
-public class CustumerController {
-	private CustumerRepository repository;
+@RequestMapping({"/customer"})
+public class CustomerController {
+	private CustomerRepository repository;
 	
-	CustumerController(CustumerRepository custumerRepository){
-		this.repository = custumerRepository;
+	CustomerController(CustomerRepository customerRepository){
+		this.repository = customerRepository;
 	}
 
 @GetMapping
-public List<Custumer> findAll() {
+public List<Customer> findAll() {
 	return repository.findAll();
 }
 
@@ -38,15 +38,15 @@ public ResponseEntity<?> findById(@PathVariable long id) {
 }
 
 @PostMapping
-public Custumer create(@RequestBody Custumer custumer) {
-	return repository.save(custumer);
+public Customer create(@RequestBody Customer customer) {
+	return repository.save(customer);
 }
 
 @PutMapping(value = "/{id}")
-public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Custumer custumer) {
+public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Customer customer) {
 	return repository.findById(id).map(record -> {
-		record.setName(custumer.getName());
-		Custumer updated = repository.save(record);
+		record.setName(customer.getName());
+		Customer updated = repository.save(record);
 		return ResponseEntity.ok().body(updated);
 	}).orElse(ResponseEntity.notFound().build());
 }

@@ -45,7 +45,7 @@ public class OrderController {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Order order) {
 		return repository.findById(id).map(record -> {
-			record.setCustumerId(order.getCustumerId());
+			record.setCustomerId(order.getCustomerId());
 			record.setProductId(order.getProductId());
 			record.setQuantity(order.getQuantity());
 			Order updated = repository.save(record);

@@ -14,8 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Custumer")
-public class Custumer {
+@Table(name = "Customer")
+public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,7 +67,7 @@ public class Custumer {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Custumer other = (Custumer) obj;
+		Customer other = (Customer) obj;
 		return Objects.equals(createdAt, other.createdAt) && Objects.equals(id, other.id)
 				&& Objects.equals(name, other.name);
 	}
