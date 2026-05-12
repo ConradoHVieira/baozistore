@@ -3,19 +3,27 @@ package com.example.baozistore.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "Custumer")
 public class Custumer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	private LocalDate dataCriacao;
+	private String name;
+	@CreationTimestamp
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate createdAt;
 
 	public Long getId() {
 		return id;
@@ -25,30 +33,30 @@ public class Custumer {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public LocalDate getDataCriacao() {
-		return dataCriacao;
+	public LocalDate getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setDataCriacao(LocalDate dataCriacao) {
-		this.dataCriacao = dataCriacao;
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", dataCriacao=" + dataCriacao + "]";
+		return "Cliente [id=" + id + ", Nome=" + name + ", DataCriação=" + createdAt + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataCriacao, id, nome);
+		return Objects.hash(createdAt, id, name);
 	}
 
 	@Override
@@ -60,8 +68,8 @@ public class Custumer {
 		if (getClass() != obj.getClass())
 			return false;
 		Custumer other = (Custumer) obj;
-		return Objects.equals(dataCriacao, other.dataCriacao) && Objects.equals(id, other.id)
-				&& Objects.equals(nome, other.nome);
+		return Objects.equals(createdAt, other.createdAt) && Objects.equals(id, other.id)
+				&& Objects.equals(name, other.name);
 	}
 
 }

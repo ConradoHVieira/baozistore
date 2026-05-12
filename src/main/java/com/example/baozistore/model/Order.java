@@ -1,6 +1,5 @@
 package com.example.baozistore.model;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -12,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_orders")
+@Table(name = "tb_order")
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,8 +76,8 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", custumerId=" + custumerId + ", productId=" + productId + ", quantity=" + quantity
-				+ "]";
+		return "" + "Pedido [id=" + id + ", ClienteID=" + custumerId + ", ProdutoID=" + productId + ", Quantidade="
+				+ quantity + "]";
 	}
 
 }
